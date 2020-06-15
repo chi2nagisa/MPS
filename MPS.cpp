@@ -1,3 +1,8 @@
+/*
+By chi2nagisa
+
+*/
+
 #include <iostream>
 #include <ctime>
 #include <vector>
@@ -22,8 +27,8 @@ int main()
 	int result_re, result_DP_UD, result_DP_BU, result_DP_BU1l, result_DP_BU2l;
 	clock_t start_time, end_time;
 	double cost_time = 0;
-	srand(1); //¹Ì¶¨Ëæ»úÊıÖÖ×Ó
-	cout << "ÇëÊäÈëĞĞÊıÓëÁĞÊı\n";
+	srand(1); //å›ºå®šéšæœºæ•°ç§å­
+	cout << "è¯·è¾“å…¥è¡Œæ•°ä¸åˆ—æ•°\n";
 	scanf_s("%d %d", &row, &column);
 	if (column <= row)
 	{
@@ -35,44 +40,44 @@ int main()
 	vector<vector<Numtype>> graph(row, vector<Numtype>(column));
 	vector<vector<Numtype>>r_dp_bu2l(2, vector<Numtype>(temp));
 	vector<Numtype>r_dp_bu1l(temp);
-	inintial_vector(row, column, graph); //³õÊ¼»¯Íø¸ñÍ¼
-	//ÒÔÏÂÊ¹ÓÃµİ¹é
+	inintial_vector(row, column, graph); //åˆå§‹åŒ–ç½‘æ ¼å›¾
+	//ä»¥ä¸‹ä½¿ç”¨é€’å½’
 	start_time = clock();
 	result_re = MPS_RE(graph, row, column);
 	end_time = clock();
 	cost_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-	cout << "µİ¹éÇóµÃµÄ×îĞ¡Â·¾¶ºÍÎª£º" << result_re << endl << "µİ¹éÊ¹ÓÃµÄÊ±¼äÎª£º" << cost_time << "s\n" << endl;
+	cout << "é€’å½’æ±‚å¾—çš„æœ€å°è·¯å¾„å’Œä¸ºï¼š" << result_re << endl << "é€’å½’ä½¿ç”¨çš„æ—¶é—´ä¸ºï¼š" << cost_time << "s\n" << endl;
 	
-	//ÒÔÏÂÊ¹ÓÃ×Ô¶¥ÏòÏÂ¶¯Ì¬¹æ»®
+	//ä»¥ä¸‹ä½¿ç”¨è‡ªé¡¶å‘ä¸‹åŠ¨æ€è§„åˆ’
 	start_time = clock();
 	result_DP_UD = DP_MPS_UD(graph, r_dp_ud, row, column);
 	end_time = clock();
 	cost_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-	cout << "×Ô¶¥ÏòÏÂDPÇóµÃµÄ×îĞ¡Â·¾¶ºÍÎª£º" << result_DP_UD << endl << "×Ô¶¥ÏòÏÂDPÊ¹ÓÃµÄÊ±¼äÎª£º" << cost_time << "s\n" << endl;
-	//ÒÔÏÂÊ¹ÓÃ×Ôµ×ÏòÉÏ¶¯Ì¬¹æ»®
+	cout << "è‡ªé¡¶å‘ä¸‹DPæ±‚å¾—çš„æœ€å°è·¯å¾„å’Œä¸ºï¼š" << result_DP_UD << endl << "è‡ªé¡¶å‘ä¸‹DPä½¿ç”¨çš„æ—¶é—´ä¸ºï¼š" << cost_time << "s\n" << endl;
+	//ä»¥ä¸‹ä½¿ç”¨è‡ªåº•å‘ä¸ŠåŠ¨æ€è§„åˆ’
 	start_time = clock();
 	result_DP_BU = DP_MPS_BU(graph, r_dp_bu, row, column);
 	end_time = clock();
 	cost_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-	cout << "×Ôµ×ÏòÉÏDPÇóµÃµÄ×îĞ¡Â·¾¶ºÍÎª£º" << result_DP_BU << endl << "×Ôµ×ÏòÉÏDPÊ¹ÓÃµÄÊ±¼äÎª£º" << cost_time << "s\n" << endl;
-	//ÒÔÏÂÊ¹ÓÃ×Ôµ×ÏòÉÏ¶¯Ì¬¹æ»®£¨Á½ĞĞµÄ¶¯Ì¬±í£©
+	cout << "è‡ªåº•å‘ä¸ŠDPæ±‚å¾—çš„æœ€å°è·¯å¾„å’Œä¸ºï¼š" << result_DP_BU << endl << "è‡ªåº•å‘ä¸ŠDPä½¿ç”¨çš„æ—¶é—´ä¸ºï¼š" << cost_time << "s\n" << endl;
+	//ä»¥ä¸‹ä½¿ç”¨è‡ªåº•å‘ä¸ŠåŠ¨æ€è§„åˆ’ï¼ˆä¸¤è¡Œçš„åŠ¨æ€è¡¨ï¼‰
 	start_time = clock();
 	result_DP_BU2l = DP_MPS_BU2l(graph, r_dp_bu2l, row, column);
 	end_time = clock();
 	cost_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-	cout << "×Ôµ×ÏòÉÏDPÊ¹ÓÃÁ½ĞĞ¶¯Ì¬±íÇóµÃµÄ×îĞ¡Â·¾¶ºÍÎª£º" << result_DP_BU2l << endl << "×Ôµ×ÏòÉÏDPÊ¹ÓÃÁ½ĞĞ¶¯Ì¬±íµÄÊ±¼äÎª£º" << cost_time << "s\n" << endl;
-	//ÒÔÏÂÊ¹ÓÃ×Ôµ×ÏòÉÏ¶¯Ì¬¹æ»®£¨µ¥ĞĞµÄ¶¯Ì¬±í£©
+	cout << "è‡ªåº•å‘ä¸ŠDPä½¿ç”¨ä¸¤è¡ŒåŠ¨æ€è¡¨æ±‚å¾—çš„æœ€å°è·¯å¾„å’Œä¸ºï¼š" << result_DP_BU2l << endl << "è‡ªåº•å‘ä¸ŠDPä½¿ç”¨ä¸¤è¡ŒåŠ¨æ€è¡¨çš„æ—¶é—´ä¸ºï¼š" << cost_time << "s\n" << endl;
+	//ä»¥ä¸‹ä½¿ç”¨è‡ªåº•å‘ä¸ŠåŠ¨æ€è§„åˆ’ï¼ˆå•è¡Œçš„åŠ¨æ€è¡¨ï¼‰
 	start_time = clock();
 	result_DP_BU1l = DP_MPS_BU1l(graph, r_dp_bu1l, row, column);
 	end_time = clock();
 	cost_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-	cout << "×Ôµ×ÏòÉÏDPÊ¹ÓÃµ¥ĞĞ¶¯Ì¬±íÇóµÃµÄ×îĞ¡Â·¾¶ºÍÎª£º" << result_DP_BU1l << endl << "×Ôµ×ÏòÉÏDPÊ¹ÓÃµ¥ĞĞ¶¯Ì¬±íµÄÊ±¼äÎª£º" << cost_time << "s\n" << endl;
+	cout << "è‡ªåº•å‘ä¸ŠDPä½¿ç”¨å•è¡ŒåŠ¨æ€è¡¨æ±‚å¾—çš„æœ€å°è·¯å¾„å’Œä¸ºï¼š" << result_DP_BU1l << endl << "è‡ªåº•å‘ä¸ŠDPä½¿ç”¨å•è¡ŒåŠ¨æ€è¡¨çš„æ—¶é—´ä¸ºï¼š" << cost_time << "s\n" << endl;
 	system("pause");
 	return 0;
 }
 
 
-//¶şÎ¬Êı×éÊä³öº¯Êı
+//äºŒç»´æ•°ç»„è¾“å‡ºå‡½æ•°
 void printvector_2d(int row, int column, vector<vector<Numtype>> v_in)
 {
 	int a = 0, b = 0;
@@ -86,7 +91,7 @@ void printvector_2d(int row, int column, vector<vector<Numtype>> v_in)
 	}
 }
 
-//Ò»Î¬Êı×éÊä³öº¯Êı
+//ä¸€ç»´æ•°ç»„è¾“å‡ºå‡½æ•°
 void printvector_1d(vector<Numtype> v_in)
 {
 	int a = 0, b = 0;
@@ -97,7 +102,7 @@ void printvector_1d(vector<Numtype> v_in)
 	cout << "\n";
 }
 
-//¶ÔÍø¸ñÍ¼½øĞĞ³õÊ¼»¯
+//å¯¹ç½‘æ ¼å›¾è¿›è¡Œåˆå§‹åŒ–
 void inintial_vector(int row, int column, vector <vector<Numtype>> &m)
 {
 	for (int i = 0; i < row; i++)
@@ -109,14 +114,14 @@ void inintial_vector(int row, int column, vector <vector<Numtype>> &m)
 	}
 }
 
-//Çó×îĞ¡Öµº¯Êı
+//æ±‚æœ€å°å€¼å‡½æ•°
 int min(int num_1, int num_2)
 {
 	if (num_1 > num_2) return num_2;
 	else return num_1;
 }
 
-//µİ¹éÊµÏÖMCS
+//é€’å½’å®ç°MCS
 int MPS_RE(vector<vector<Numtype>> m, int I, int J)
 {
 	int i = I - 1;
@@ -141,7 +146,7 @@ int MPS_RE(vector<vector<Numtype>> m, int I, int J)
 	return r;
 }
 
-//´ømemoµÄDP
+//å¸¦memoçš„DP
 int DP_MPS_UD(vector<vector<Numtype>> m, vector<vector<Numtype>> &r, int I, int J)
 {
 	int i = I - 1;
@@ -169,7 +174,7 @@ int DP_MPS_UD(vector<vector<Numtype>> m, vector<vector<Numtype>> &r, int I, int 
 	else return r[i][j];
 }
 
-//×Ôµ×ÏòÉÏµÄDP
+//è‡ªåº•å‘ä¸Šçš„DP
 int DP_MPS_BU(vector<vector<Numtype>> m, vector<vector<Numtype>> &r, int row, int column)
 {
 	int i, j;
@@ -193,7 +198,7 @@ int DP_MPS_BU(vector<vector<Numtype>> m, vector<vector<Numtype>> &r, int row, in
 	return r[row - 1][column - 1];
 }
 
-//×Ôµ×ÏòÉÏÊ¹ÓÃÁ½ĞĞµÄDP
+//è‡ªåº•å‘ä¸Šä½¿ç”¨ä¸¤è¡Œçš„DP
 int DP_MPS_BU2l(vector<vector<Numtype>> m, vector<vector<Numtype>> &r, int row, int column)
 {
 	int i, j;
@@ -233,7 +238,7 @@ int DP_MPS_BU2l(vector<vector<Numtype>> m, vector<vector<Numtype>> &r, int row, 
 	}
 }
 
-//×Ôµ×ÏòÉÏÊ¹ÓÃÒ»ĞĞµÄDP
+//è‡ªåº•å‘ä¸Šä½¿ç”¨ä¸€è¡Œçš„DP
 int DP_MPS_BU1l(vector<vector<Numtype>> m, vector<Numtype> &r, int row, int column)
 {
 	int i, j;
